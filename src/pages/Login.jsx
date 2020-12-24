@@ -7,7 +7,7 @@ class Login extends Component {
         return(
             <div id="LoginContainer">
                 <header class="center" >WSU CS Project - LedGrid</header>
-                <img src={LoginPerson} className="profile" alt="profile" />          
+                <img src={LoginPerson} className="profile" alt="profile" />         
             </div>
         );
     }
