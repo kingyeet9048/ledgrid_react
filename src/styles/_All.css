@@ -1,0 +1,12 @@
+body {
+    font-family: 'Titillium Web', sans-serif;
+    background-color: rgb(85, 28, 85);
+}
+
+#root {
+    font-size: 140%;
+    margin-left: 0%;
+    margin-right: 0%;
+    position: relative;
+    /* min-width: 100vh; */
+}

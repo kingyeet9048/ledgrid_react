@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from './pages/Login.jsx';
-import './styles/_All.scss';
-import './styles/_Index.scss';
+import Login from './Components/Login.jsx';
+import './styles/_All.css';
+import './styles/_Index.css';
 
 ReactDOM.render(
     <Login />,

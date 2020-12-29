@@ -1,0 +1,36 @@
+header {
+    margin-bottom: -65px;
+    font-size: 30px;
+    text-shadow: 0px 0px 2px rgb(255,255,255);
+    color: white;
+}
+
+a:hover {
+    text-shadow: 0px 0px 9px rgb(255,255,255);
+    color: rgb(255, 255, 255);
+}
+
+.p1 {
+    margin-top: -80px;
+}
+
+.center {
+    text-align: center;
+}
+
+.profile {
+    width: 480px;
+    height: 250px;
+    padding-right: 2.5em;
+}
+
+.resetPassword {
+    color: white;
+}
+
+#loginContainer {
+    padding: 16px;
+    text-align: center;
+    top: 60%;
+    margin: 10% auto 0 auto;
+}
