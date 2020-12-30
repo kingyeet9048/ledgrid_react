@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './styles/_All.css';
-import './styles/_Index.css';
+import './styles/All.css';
+import './styles/Index.css';
 import PageRouter from './routes/PageRouter';
 
 ReactDOM.render(

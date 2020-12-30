@@ -1,8 +1,7 @@
-import React from 'react';
 const IP = "http://10.19.80.18";
 const port = "3010";
-const [response, setResponse] = React.useState();
-const Fetcher = (path, method) => {
+export let response;
+export function Fetcher(path) {
     fetch(IP + ":" + port + path, {
         headers: {
             'Content-Type': 'application/json'
@@ -12,15 +11,13 @@ const Fetcher = (path, method) => {
     .then(
         (result) => {
             console.log(result);
-            setResponse(result);
+            response = result;
             return result;
         },
         (error) => {
             console.log(error);
-            setResponse(error);
+            response = error;
             return error;
         }
     );
 }
-
-export default Fetcher;

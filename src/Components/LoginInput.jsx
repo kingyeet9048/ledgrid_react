@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../styles/_LoginInput.css';
-import RequestHandler from './RequestHandler';
+import '../styles/LoginInput.css';
+import { Fetcher, response } from './RequestHandler';
 
 
 class LoginInput extends Component {
@@ -10,7 +10,7 @@ class LoginInput extends Component {
         this.userInput = React.createRef();
         this.passInput = React.createRef();
         this.state = {
-            response: RequestHandler.response,
+            response: response,
             responded: false
         }
     }
@@ -18,7 +18,7 @@ class LoginInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState({
-            response : RequestHandler.Fetcher("/login", "GET"),
+            response : Fetcher("/login"),
             responded: true
         });
     }

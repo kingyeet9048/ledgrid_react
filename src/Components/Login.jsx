@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginPerson from './../../public/login_person.png';
-import '../styles/_Login.css';
+import '../styles/Login.css';
 import  LoginInput from './LoginInput';
 import { Link } from 'react-router-dom';
 
