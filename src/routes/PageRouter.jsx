@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Login from '../Components/Login';
-import ResetPassword from './../Components/ResetPassword';
+import Login from '../Components/Pages/Login';
+import ResetPassword from '../Components/Pages/ResetPassword';
 
 const PageRouter = () => {
     return (

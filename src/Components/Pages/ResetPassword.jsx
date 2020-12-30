@@ -5,7 +5,7 @@ class ResetPassword extends Component {
     
     render() {
         return (
-            <p>hellow world</p>
+            <p>hello World!</p>
         );
     }
 }
