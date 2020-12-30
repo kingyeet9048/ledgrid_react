@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import '../styles/_LoginInput.css';
+import RequestHandler from './RequestHandler';
 
-let response = "hello world";
 
 class LoginInput extends Component {
     constructor(props) {
@@ -10,45 +10,27 @@ class LoginInput extends Component {
         this.userInput = React.createRef();
         this.passInput = React.createRef();
         this.state = {
-            response: response,
+            response: RequestHandler.response,
             responded: false
         }
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        // alert("Submitted. Reaction will encur later.\n");
-        fetch("http://192.168.1.136:3010/login", {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        response: result,
-                        responded: true
-                    });
-                    console.log(result);
-                },
-                (error) => {
-                    this.setState({
-                        response: error,
-                        responded: true
-                    });
-                    console.log(error);
-                }
-            );
+        this.setState({
+            response : RequestHandler.Fetcher("/login", "GET"),
+            responded: true
+        });
     }
     render() { 
+        const alertMessage = this.state.responded ? alert(this.state.response['auth']) : null;
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type="text" id="username" placeholder="Username" name="username" ref={this.userInput} />
                 <br/>
                 <input type="password" id="password" placeholder="Password" name="password" ref={this.passInput} />
                 <br/>
-                <input type="submit" value="Login" className="btn btn-outline-light" onChange={this.state.responded ? alert(this.state.response['auth']) : null}/>
+                <input type="submit" value="Login" className="btn btn-outline-light" onChange={alertMessage}/>
             </form>
         );
     }
