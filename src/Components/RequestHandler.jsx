@@ -1,23 +1,26 @@
-const IP = "http://10.19.80.18";
+import { trackPromise } from 'react-promise-tracker';
+
+const IP = "http://192.168.1.236";
 const port = "3010";
-export let response;
+export let response = null;
 export function Fetcher(path) {
-    fetch(IP + ":" + port + path, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(res => res.json())
-    .then(
-        (result) => {
-            console.log(result);
-            response = result;
-            return result;
-        },
-        (error) => {
-            console.log(error);
-            response = error;
-            return error;
-        }
-    );
+    trackPromise(
+        fetch(IP + ":" + port + path, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log(result);
+                response = result;
+                return result;
+            },
+            (error) => {
+                console.log(error);
+                response = error;
+                return error;
+            }
+    ));
 }
