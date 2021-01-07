@@ -1,9 +1,8 @@
 import { trackPromise } from 'react-promise-tracker';
 
-const IP = "http://192.168.1.236";
+const IP = "http://10.19.80.30";
 const port = "3010";
-export let response = null;
-export function Fetcher(path) {
+export function Fetcher(path, callback) {
     trackPromise(
         fetch(IP + ":" + port + path, {
             headers: {
@@ -13,13 +12,11 @@ export function Fetcher(path) {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
-                response = result;
+                callback(null, result);
                 return result;
             },
             (error) => {
-                console.log(error);
-                response = error;
+                callback(error);
                 return error;
             }
     ));

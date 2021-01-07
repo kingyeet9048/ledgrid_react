@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/LoginInput.css';
 import Loading from './Loading';
-import { Fetcher, response } from './RequestHandler';
+import { Fetcher } from './RequestHandler';
 import { Link } from 'react-router-dom';
 
 
@@ -12,22 +12,25 @@ class LoginInput extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderForm = this.renderForm.bind(this);
-        this.handleChange = this.handleChange.bind(this);
         this.loadingState = this.loadingState.bind(this);
         this.userInput = React.createRef();
         this.passInput = React.createRef();
         this.state = {
-            response: response,
-            responded: false,
+            response: null,
+            waiting: false,
             handler : null
         }
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({
-            response : Fetcher("/login"),
-            responded: true
+        this.setState({waiting : true});
+        Fetcher("/login", (error, result)=> {
+            console.log(error ? error : result);
+            this.setState({
+                response : result,
+                waiting : false
+            });
         });
     }
 
@@ -50,25 +53,9 @@ class LoginInput extends Component {
         return <Loading />;
     }
 
-    handleChange(value) {
-        this.setState({
-            responded : value
-        });
-    }
-
     render() { 
-        let { responded, handler } = this.state;
-
-
-        if(responded) {
-            handler = this.loadingState();
-            this.handleChange(!responded);
-        }
-        else {
-            handler = this.renderForm();
-        }
-        // const handler = response != null ? this.renderForm() : responded == true ? this.loadingState() : this.renderForm();
-        
+        let { waiting, handler } = this.state;
+        handler = waiting ? this.loadingState() : this.renderForm();       
         return (
             handler
         );
