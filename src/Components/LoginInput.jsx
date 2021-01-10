@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/LoginInput.css';
 import Loading from './Loading';
-import { Fetcher } from './RequestHandler';
 import { Link } from 'react-router-dom';
 
 
@@ -10,34 +9,19 @@ import { Link } from 'react-router-dom';
 class LoginInput extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.renderForm = this.renderForm.bind(this);
         this.loadingState = this.loadingState.bind(this);
         this.userInput = React.createRef();
         this.passInput = React.createRef();
         this.state = {
-            response: null,
-            waiting: false,
             handler : null
         }
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        this.setState({waiting : true});
-        Fetcher("/login", (error, result)=> {
-            console.log(error ? error : result);
-            this.setState({
-                response : result,
-                waiting : false
-            });
-        });
     }
 
     renderForm() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.props.handleSubmit}>
                     <input type="text" id="username" placeholder="Username" name="username" ref={this.userInput} />
                     <br/>
                     <input type="password" id="password" placeholder="Password" name="password" ref={this.passInput} />
@@ -54,7 +38,8 @@ class LoginInput extends Component {
     }
 
     render() { 
-        let { waiting, handler } = this.state;
+        let { handler } = this.state;
+        const { waiting } = this.props;
         handler = waiting ? this.loadingState() : this.renderForm();       
         return (
             handler

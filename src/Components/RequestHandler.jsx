@@ -1,6 +1,6 @@
 import { trackPromise } from 'react-promise-tracker';
 
-const IP = "http://10.19.80.30";
+const IP = "http://192.168.1.136";
 const port = "3010";
 export function Fetcher(path, callback) {
     trackPromise(
